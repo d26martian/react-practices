@@ -23,7 +23,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
             auto: (resPath: string) => Boolean(resPath.includes('.module.')),
             localIdentName: options.isDev ? '[path][name]__[local]--[hash:base64]:5' : '[hash:base64:8]'
           },
-          // esModule: true,
+          esModule: true,
         },
       },
       "sass-loader",
