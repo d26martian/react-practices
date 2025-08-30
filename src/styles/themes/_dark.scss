@@ -1,0 +1,11 @@
+@use "../variables/global" as v;
+
+.dark {
+  --font-family-main: #{v.$font-family-main};
+  --font-m: #{v.$font-m};
+  --font-l: #{v.$font-l};
+
+  --bg-color: #{v.$bg-color-dark};
+  --primary-color: #{v.$primary-color-dark};
+  --secondary-color: #{v.$secondary-color-dark};
+}

@@ -9,6 +9,7 @@ module.exports = (env: BuildEnv) => {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     build: path.resolve(__dirname, 'build'),
     html: path.resolve(__dirname, 'public', 'index.html'),
+    styles: path.resolve(__dirname, 'src/styles', 'index.scss')
   }
   
   const mode = env.mode || 'development';

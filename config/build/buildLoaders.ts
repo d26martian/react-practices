@@ -26,24 +26,34 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
           esModule: true,
         },
       },
-      "sass-loader",
+      // "sass-loader",
+      {
+        loader: 'sass-loader',
+        options: {
+          implementation: require('sass'),
+          sassOptions: {
+            includePaths: './src/styles/index.scss',
+            quietDeps: true
+          }
+        }
+      }
     ],
   }
 
-  const cssLoader = {
-    test: /\.s[ac]ss$/i,
-    use: [
-      options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-      {
-        loader: "css-loader",
-        options: {
-          modules: true,
-        },
-      },
-      "sass-loader",
-    ],
-    exclude: /\.module\.scss$/,
-  }
+  // const cssLoader = {
+  //   test: /\.s[ac]ss$/i,
+  //   use: [
+  //     options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+  //     {
+  //       loader: "css-loader",
+  //       options: {
+  //         modules: true,
+  //       },
+  //     },
+  //     "sass-loader",
+  //   ],
+  //   exclude: /\.module\.scss$/,
+  // }
 
   return [
     typescriptLoader,

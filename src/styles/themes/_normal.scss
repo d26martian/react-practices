@@ -1,0 +1,11 @@
+@use "../variables/global" as v;
+
+:root {
+  --font-family-main: #{v.$font-family-main};
+  --font-m: #{v.$font-m};
+  --font-l: #{v.$font-l};
+  
+  --bg-color: #{v.$bg-color-light};
+  --primary-color: #{v.$primary-color-light};
+  --secondary-color: #{v.$secondary-color-light};
+}
