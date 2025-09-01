@@ -5,8 +5,10 @@ import { Link } from 'react-router'
 import { AboutPageAcync } from './pages/AboutPage/AboutPage.async'
 import { MainPageAsync } from './pages/MainPage/MainPage.async'
 
-import './styles/index.scss'
 import { useTheme } from './theme/useTheme'
+import { classNames } from './helpers/classNames/classNames'
+
+import './styles/index.scss'
 
 export const App = () => {
 
@@ -14,7 +16,7 @@ export const App = () => {
 
 
   return (
-    <div className={`app ${theme}`}>
+    <div className={classNames('app', {}, [theme])}>
       <button onClick={toggleTheme}>TOGGLE</button>
       <Link to={'/'}>Home</Link>
       <Link to={'/about'}>About</Link>
