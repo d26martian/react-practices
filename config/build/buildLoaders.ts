@@ -8,12 +8,12 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   const typescriptLoader = {
     test: /\.tsx?$/,
     use: 'ts-loader',
-    exclude: /nonde_modules/
+    exclude: /node_modules/
   }
 
-  const cssModuleLoader = {
+  const scssModuleLoader = {
+    // test: /\.module\.s[ac]ss$/i,
     test: /\.s[ac]ss$/i,
-    // test: /\.module\.s[ac]ss$/,
     use: [
       options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       {
@@ -21,43 +21,30 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         options: {
           modules: {
             auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-            localIdentName: options.isDev ? '[path][name]__[local]--[hash:base64]:5' : '[hash:base64:8]'
+            localIdentName: options.isDev
+              ? '[path][name]__[local]--[hash:base64:5]'
+              : '[hash:base64:8]'
           },
           esModule: true,
         },
       },
-      // "sass-loader",
-      {
-        loader: 'sass-loader',
-        options: {
-          implementation: require('sass'),
-          sassOptions: {
-            includePaths: './src/styles/index.scss',
-            quietDeps: true
-          }
-        }
-      }
+      "sass-loader",
     ],
   }
 
-  // const cssLoader = {
-  //   test: /\.s[ac]ss$/i,
-  //   use: [
-  //     options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-  //     {
-  //       loader: "css-loader",
-  //       options: {
-  //         modules: true,
-  //       },
-  //     },
-  //     "sass-loader",
-  //   ],
-  //   exclude: /\.module\.scss$/,
-  // }
+  const scssLoader = {
+    test: /\.s[ac]ss$/i,
+    exclude: /\.module\.s[ac]ss$/i,
+    use: [
+      options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+      'css-loader',
+      'sass-loader',
+    ],
+  };
 
   return [
     typescriptLoader,
-    cssModuleLoader,
-    // cssLoader,
+    scssModuleLoader,
+    // scssLoader,
   ]
 }
